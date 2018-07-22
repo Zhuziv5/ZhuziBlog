@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="blog.mapper.CategoryMapper">
+	<select id="list" resultType="Category">
+		select * from tbl_category_info
+	</select>
+	
+	<insert id="addCategory" >
+		insert into tbl_category_info (name) values (#{name})
+	</insert>
+	
+	<update id="updateCategory" parameterType="Category">
+		update tbl_category_info set name=#{name} where id=#{id}
+	</update>
+	
+	<delete id="deleteCategory" parameterType="Category">
+		delete from tbl_category_info where id=#{id}
+	</delete>
+</mapper>

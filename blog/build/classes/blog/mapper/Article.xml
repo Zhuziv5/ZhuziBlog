@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="blog.mapper.ArticleMapper">
+	<select id="list" resultType="Article">
+		select * from tbl_article_info
+	</select>
+	
+	<select id="listArticle" resultType="Article">
+		select *
+		from tbl_article_info 
+		where id in 
+		(select ac.article_id 
+		from tbl_category_info as ci,tbl_article_category as ac
+		where ac.category_id=#{id})
+	</select>
+	
+	<insert id="addArticle" parameterType="Article">
+		insert into tbl_article_info
+	</insert>
+	
+</mapper>
