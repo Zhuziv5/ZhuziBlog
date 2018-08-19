@@ -68,14 +68,9 @@ public class CategoryController {
 	}
 	//对应管理页面-分类管理-新增分类功能
 	@RequestMapping("addCategory")
-	public ModelAndView addCategory(HttpServletRequest request) {
-		String newCategoryName=request.getParameter("newCategoryName");
+	public ModelAndView addCategory(HttpServletRequest request,Category category) {
 		ModelAndView mav=new ModelAndView();
-		try {
-		categoryService.addCategory(newCategoryName);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		categoryService.addCategory(category);
 		mav.setViewName("redirect:categoryManagement");
 		return mav;
 	}
@@ -93,8 +88,8 @@ public class CategoryController {
 	}
 	//对应管理页面-分类页面-删除分类
 	@RequestMapping("deleteCategory")
-	public ModelAndView deleteCategory(Category category) {
-		categoryService.deleteCategory(category);
+	public ModelAndView deleteCategory(Category category,Article article) {
+		categoryService.deleteCategory(category,article);
 		return new ModelAndView("redirect:categoryManagement","category",category);
 	}
 }

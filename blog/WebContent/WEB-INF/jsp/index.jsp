@@ -26,7 +26,7 @@
 								<div class="container-fluid">
 									<a class="btn btn-navbar"
 										data-target=".navbar-responsive-collapse"
-										data-toggle="collapse"></a> <a class="brand" href="#">我的小站</a>
+										data-toggle="collapse"></a> <a class="brand" href="index">我的小站</a>
 									<div class="nav-collapse collapse navbar-responsive-collapse">
 										<ul class="nav">
 											<li class="active"><a href="index">主页</a></li>
@@ -52,9 +52,12 @@
 											<div class="col-md-3">
 												<h2>${c.title}</h2>
 												<p>${c.summary}</p>
+												<form action="showArticle">
 												<p>
-													<a class="btn" href="#">浏览全文 »</a>
+													<input type="hidden" name="article_id" value="${c.id }">
+													<button class="btn-lg" type="submit">浏览全文 »</button>
 												</p>
+												</form>
 											</div>
 										</c:forEach>
 									</div>

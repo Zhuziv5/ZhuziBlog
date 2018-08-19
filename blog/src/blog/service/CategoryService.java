@@ -7,7 +7,7 @@ import blog.pojo.Category;
 
 public interface CategoryService {
 	List<Category> list();
-	void addCategory(String categoryName);
+	void addCategory(Category category);
 	void updateCategory(Category category);
-	void deleteCategory(Category category);
+	void deleteCategory(Category category,Article article);
 }

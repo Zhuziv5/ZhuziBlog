@@ -67,17 +67,16 @@
 										<td>时间待完成</td>
 										<td>阅读量待完成</td>
 										<td>
-										<td>
 											<div class="btn-group">
 												<button type="button"
 													class="btn btn-primary btn-lg btn-success"
-													data-toggle="modal" data-target="#myModal${c.id }">编辑</button>
-												<form action="deleteCategory">
-													<button type="submit" name="id" value="${c.id }"
+													data-toggle="modal" data-target="#myModal${a.id }">编辑</button>
+												<form action="deleteArticle">
+													<button type="submit" name="article_id" value="${a.id }"
 														class="btn btn-primary btn-lg btn-danger">删除</button>
 												</form>
 											</div>
-											<div class="modal fade" id="myModal${c.id }" tabindex="-1"
+											<div class="modal fade" id="myModal${a.id }" tabindex="-1"
 												role="dialog" aria-labelledby="myModalLabel"
 												aria-hidden="true">
 												<div class="modal-dialog">
@@ -85,57 +84,47 @@
 														<div class="modal-header">
 															<h4 class="modal-title" id="myModalLabel">编辑文章</h4>
 														</div>
-														<div class="modal-body">
-															<form action="updateCategory" role="form">
+														<form action="updateArticle" role="form">
+															<div class="modal-body">
 																<div class="form-group">
-																	<label class=" control-label">文章标题</label> <input
-																		type="text" class="form-control" />
-																</div>
-																<div class="form-group">
-																	<label for="name">文章简介</label>
-																	<textarea class="form-control" rows="3"
-																		name="mysumaryarea">
-																	</textarea>
-																</div>
-
-
-
-																<div class="btn-group">
-																	<button data-toggle="dropdown"
-																		class="btn dropdown-toggle">
-																		文章分类 <span class="caret"></span>
-																	</button>
-																	<ul class="dropdown-menu " role="menu">
-																		<li><a href="#">Java Web</a></li>
-																		<li><a href="#">SSM</a></li>
-																		<li><a href="#">更多分类</a></li>
-																	</ul>
-																</div>
-
-
-
-
-
-																<div class="form-group">
-																	<label for="inputtext" class="control-label">修改名称</label>
+																	<label class=" control-label" for="inputtitle">文章标题</label>
 																	<div>
-																		<input type="text" class="form-control" id="inputtext"
-																			name="name" placeholder="不要输入重复分类名称"> <input
-																			type="hidden" name="id" value=${c.id }>
-																		<button type="button" class="btn btn-default"
-																			data-dismiss="modal">取消</button>
-																		<button type="submit" class="btn btn-primary">
-																			确认修改</button>
+																	<input type="text" class="form-control" name="title" id="inputtitle">
+																	<input type="hidden" name="article_id" value="${a.id }">
 																	</div>
 																</div>
-
-															</form>
-
-														</div>
+																<div class="form-group">
+																	<label for="summaryarea">文章简介</label>
+																	<textarea class="form-control" rows="3"
+																		id="summaryarea" name="summary">
+																	</textarea>
+																</div>
+																<div class="form-group ">
+																	<label for="sel1">文章分类</label> <select
+																		class="form-control" id="sel1" name="name">
+																		<option selected="selected" value="其他分类" />
+																		<c:forEach items="${cl}" var="c" varStatus="st">
+																			<option value="${c.name }">${c.name }</option>
+																		</c:forEach>
+																	</select>
+																</div>
+																<div class="form-group">
+																	<label for="contentarea">文章内容</label>
+																	<textarea class="form-control" id="contentarea"
+																		rows="3" name="content">
+																	</textarea>
+																</div>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-default"
+																	data-dismiss="modal">取消</button>
+																<button type="submit" class="btn btn-primary">
+																	确认修改</button>
+															</div>
+														</form>
 													</div>
 												</div>
 											</div>
-
 										</td>
 									</tr>
 								</c:forEach>
@@ -154,29 +143,29 @@
 						</div>
 						<form action="addArticle" role="form">
 							<div class="form-group ">
-								<label for="name">文章标题</label><input type="text" name="title"
-									class="form-control" />
+								<label>文章标题</label><input type="text" name="title"
+									class="form-control" >
 							</div>
 							<div class="form-group ">
-								<label for="name">文章简介</label>
+								<label>文章简介</label>
 								<textarea class="form-control" rows="3" name="summary">
 							</textarea>
 							</div>
 							<div class="form-group ">
 								<label for="sel1">文章分类</label> <select class="form-control"
-									id="sel1" name="category">
-									<option selected="selected" value="其他分类"/>
+									id="sel1" name="name">
+									<option selected="selected" value="其他分类" />
 									<c:forEach items="${cl}" var="c" varStatus="st">
 										<option value="${c.name }">${c.name }</option>
 									</c:forEach>
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="name">文章内容</label>
-								<textarea class="form-control" rows="3" name="content">
+								<label>文章内容</label>
+								<textarea class="form-control" rows="5" name="content">
 							</textarea>
 							</div>
-							<button type="submit" class="btn btn-default">提交</button>
+							<button type="submit" class="btn btn-default">确认添加</button>
 						</form>
 					</div>
 				</div>

@@ -73,7 +73,7 @@
 													class="btn btn-primary btn-lg btn-success"
 													data-toggle="modal" data-target="#myModal${c.id }">编辑</button>
 												<form action="deleteCategory">
-													<button type="submit" name="id" value="${c.id }"
+													<button type="submit" name="name" value="${c.name }"
 														class="btn btn-primary btn-lg btn-danger">删除</button>
 												</form>
 											</div>
@@ -85,29 +85,31 @@
 														<div class="modal-header">
 															<h4 class="modal-title" id="myModalLabel">修改分类名称</h4>
 														</div>
-														<div class="modal-body">
-															<form action="updateCategory" role="form">
+														<form action="updateCategory" role="form">
+															<div class="modal-body">
 																<div class="form-group">
-																	<label class=" control-label">分类名称</label>
+																	<label class=" control-label"><b>分类名称</b></label>
 																	<div>
 																		<p class="form-control-static">${c.name}</p>
 																	</div>
 																</div>
 																<div class="form-group">
-																	<label for="inputtext" class="control-label">修改名称</label>
+																	<label for="inputtext" class="control-label"><b>修改名称</b></label>
 																	<div>
 																		<input type="text" class="form-control" id="inputtext"
 																			name="name" placeholder="不要输入重复分类名称"> <input
 																			type="hidden" name="id" value=${c.id }>
-																		<button type="submit" class="btn btn-primary">
-																			确认修改</button>
-																		<button type="button" class="btn btn-default"
-																			data-dismiss="modal">取消</button>
 																	</div>
 																</div>
-															</form>
+															</div>
+															<div class="modal-footer">
+																<button type="submit" class="btn btn-primary">
+																	确认修改</button>
+																<button type="button" class="btn btn-default"
+																	data-dismiss="modal">取消</button>
+															</div>
+														</form>
 
-														</div>
 													</div>
 												</div>
 											</div>
@@ -124,15 +126,14 @@
 								<form action="addCategory">
 									<fieldset>
 										<legend>新增分类</legend>
-										<label>新增分类名</label><input type="text" name="newCategoryName" />
-										<span class="help-block">注意：不要增加重复分类</span>
+										<label>新增分类名</label><input type="text" name="name" /> <span
+											class="help-block">注意：不要增加重复分类</span>
 										<button type="submit" class="btn">确定</button>
 									</fieldset>
 								</form>
 							</div>
-							
-							<div class="span6">
-							</div>
+
+							<div class="span6"></div>
 						</div>
 					</div>
 				</div>

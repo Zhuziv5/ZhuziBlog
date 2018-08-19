@@ -8,8 +8,11 @@ public class Article {
 	//对应表tbl_article_content
 	private Long id;
 	private String content;
-	//articleId在Category类中
 	
+	//对应表tbl_article_category
+	private Long category_id;//分类id
+	private Long article_id;//文章Id,在表tbl_article_content和表tbl_article_category中都有
+		
 	//对应tbl_article_info
 	private String title;
 	private String summary;
@@ -44,6 +47,17 @@ public class Article {
 	public void setTraffic(Integer traffic) {
 		this.traffic = traffic;
 	}
-	
+	public Long getCategory_id() {
+		return category_id;
+	}
+	public void setCategory_id(Long category_id) {
+		this.category_id = category_id;
+	}
+	public Long getArticle_id() {
+		return article_id;
+	}
+	public void setArticle_id(Long article_id) {
+		this.article_id = article_id;
+	}
 	
 }

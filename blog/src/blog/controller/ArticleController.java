@@ -2,6 +2,7 @@ package blog.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,8 +42,8 @@ public class ArticleController {
 	@RequestMapping("articleManagement")
 	public ModelAndView articleManagement(Page page) {
 		ModelAndView mav=new ModelAndView();
-		PageHelper.offsetPage(page.getStart(),4);
-		List<Article>  as=articleService.list();
+		PageHelper.offsetPage(page.getStart(),5);
+		List<Article>  as=articleService.list(); 
 		List<Category> cl=categoryService.list();
 		int total = (int) new PageInfo<>(as).getTotal();
 		page.caculateLast(total);
@@ -56,8 +57,38 @@ public class ArticleController {
 	}
 	//对应管理页面-博文管理-添加文章功能
 	@RequestMapping("addArticle")
-	public ModelAndView addArticle(Article article) {
-		articleService.addArticle(article);
-		return new ModelAndView("articleManagement","article",article);
+	public ModelAndView addArticle(Article article,Category category) {
+		articleService.addArticle(article,category);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("redirect:articleManagement");
+		return mav;
+	}
+	//对应管理页面-博文管理-编辑文章功能
+	@RequestMapping("updateArticle")
+	public ModelAndView updateArticle(Article article,Category category) {
+		articleService.updateArticle(article,category);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("redirect:articleManagement");
+		return mav;
+	}
+	
+	//对应管理页面-博文管理-删除文章功能
+	@RequestMapping("deleteArticle")
+	public ModelAndView deleteArticle(Article article,Category category) {
+		articleService.deleteArticle(article,category);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("redirect:articleManagement");
+		return mav;
+	}
+	
+	//对应博文显示页面
+	@RequestMapping("showArticle")
+	public ModelAndView showArticle(Article article) {
+		String at=articleService.showArticle(article);
+		System.out.println(at);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("at", at);
+		mav.setViewName("article");
+		return mav;
 	}
 }

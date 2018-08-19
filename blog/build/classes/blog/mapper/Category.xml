@@ -7,16 +7,41 @@
 	<select id="list" resultType="Category">
 		select * from tbl_category_info
 	</select>
-	
-	<insert id="addCategory" >
-		insert into tbl_category_info (name) values (#{name})
+
+	<select id="getCategoryIdByName" parameterType="Category"
+		resultType="long">
+		select id from tbl_category_info where name=#{name}
+	</select>
+
+	<insert id="addCategory" parameterType="Category">
+		insert into
+		tbl_category_info (name) values (#{name})
 	</insert>
-	
+
 	<update id="updateCategory" parameterType="Category">
-		update tbl_category_info set name=#{name} where id=#{id}
+		update
+		tbl_category_info set name=#{name} where id=#{id}
 	</update>
-	
+
+	<update id="updateOtherCategoryNumber" parameterType="Category">
+		update tbl_category_info set number=number+(
+		select number
+		from (select * from tbl_category_info) as a
+		where name=#{name}
+		) where name='其他分类'
+	</update>
+	<update id="increaseCategoryNumber" parameterType="Category">
+		update
+		tbl_category_info set number=number+1 where name=#{name}
+	</update>
+
+	<update id="decreaseCategoryNumber" parameterType="Category">
+		update
+		tbl_category_info set number=number-1 where id=#{id}
+	</update>
+
 	<delete id="deleteCategory" parameterType="Category">
-		delete from tbl_category_info where id=#{id}
+		delete from
+		tbl_category_info where name=#{name}
 	</delete>
 </mapper>
