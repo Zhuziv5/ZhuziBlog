@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.blog.mapper.CategoryMapper">
+	<select id="list" resultType="Category">
+		select * from tbl_category_info
+	</select>
+
+	<select id="getCategoryIdByName" parameterType="Category"
+		resultType="long">
+		select id from tbl_category_info where name=#{name}
+	</select>
+
+	<insert id="addCategory" parameterType="Category">
+		insert into
+		tbl_category_info (name) values (#{name})
+	</insert>
+
+	<update id="updateCategory" parameterType="Category">
+		update
+		tbl_category_info set name=#{name} where id=#{id}
+	</update>
+
+	<update id="updateOtherCategoryNumber" parameterType="Category">
+		update tbl_category_info set number=number+(
+		select number
+		from (select * from tbl_category_info) as a
+		where name=#{name}
+		) where name='其他分类'
+	</update>
+	<update id="increaseCategoryNumber" parameterType="Category">
+		update
+		tbl_category_info set number=number+1 where name=#{name}
+	</update>
+
+	<update id="decreaseCategoryNumber" parameterType="Category">
+		update
+		tbl_category_info set number=number-1 where id=#{id} and number>0
+	</update>
+
+	<delete id="deleteCategory" parameterType="Category">
+		delete from
+		tbl_category_info where name=#{name}
+	</delete>
+</mapper>

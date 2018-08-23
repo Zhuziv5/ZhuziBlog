@@ -24,7 +24,7 @@ public class ArticleController {
 	@Autowired
 	CategoryService categoryService;
 	//对应主页，即显示所有博文
-	@RequestMapping("index")
+	@RequestMapping("/index")
 	public ModelAndView listArticle(Page page) {
 		ModelAndView mav=new ModelAndView();
 		PageHelper.offsetPage(page.getStart(),9);

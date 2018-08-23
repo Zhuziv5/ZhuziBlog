@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.blog.mapper.ArticleMapper">
+	<select id="list" resultType="Article">
+		select * from tbl_article_info
+	</select>
+	
+	<select id="showArticle" parameterType="Article" resultType="string">
+		select content from tbl_article_content where article_id=#{article_id}
+	</select>
+
+	<select id="getArticleLastInsertId" resultType="long">
+		select
+		last_insert_id()
+	</select>
+
+	<select id="getCategory_idByArticle_id" parameterType="Article"
+		resultType="long">
+		select category_id from tbl_article_category where
+		article_id=#{article_id}
+	</select>
+
+	<select id="listArticle" resultType="Article">
+		select *
+		from
+		tbl_article_info
+		where id in
+		(select ac.article_id
+		from tbl_category_info
+		as ci,tbl_article_category as ac
+		where
+		ac.category_id=#{id})
+	</select>
+
+	<insert id="addArticleInfo" parameterType="Article">
+		insert into
+		tbl_article_info (title,summary) values (#{title},#{summary})
+	</insert>
+
+	<insert id="addArticleContent" parameterType="Article">
+		insert into
+		tbl_article_content (content,article_id) values
+		(#{content},#{article_id})
+	</insert>
+
+	<insert id="addArticleAndCategory" parameterType="map">
+		insert into
+		tbl_article_category (article_id,category_id) values
+		(#{article_id},#{category_id});
+	</insert>
+
+	<delete id="deleteArticleInfo" parameterType="Article">
+		delete from
+		tbl_article_info where id=#{id}
+	</delete>
+
+	<delete id="deleteArticleContent" parameterType="Article">
+		delete from
+		tbl_article_content where article_id=#{article_id}
+	</delete>
+
+	<delete id="deleteArticleCategory" parameterType="Article">
+		delete from
+		tbl_article_category where article_id=#{article_id}
+	</delete>
+
+	<update id="updateArticleContent" parameterType="Article">
+		update
+		tbl_article_content set content=#{content} where
+		article_id=#{article_id}
+	</update>
+
+	<update id="updateArticleInfo" parameterType="Article">
+		update
+		tbl_article_info set title=#{title},summary=#{summary} where id=#{id}
+	</update>
+
+	<update id="updateArticleCategory" parameterType="Article">
+		update
+		tbl_article_category set category_id=#{category_id} where
+		article_id=#{article_id}
+	</update>
+
+	<update id="updateArticle_idByCategory_id">
+		update tbl_article_category as ac
+		set ac.category_id=
+		(select id from tbl_category_info where name='其他分类')
+		where ac.article_id in
+		(
+		select article_id
+		from (select * from tbl_article_category) as cc
+		where category_id=#{category_id}
+		)
+	</update>
+</mapper>
