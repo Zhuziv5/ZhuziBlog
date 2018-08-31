@@ -8,7 +8,7 @@
 		select * from tbl_article_info
 	</select>
 	
-	<select id="showArticle" parameterType="Article" resultType="string">
+	<select id="showArticle" parameterType="Article" resultType="String">
 		select content from tbl_article_content where article_id=#{article_id}
 	</select>
 

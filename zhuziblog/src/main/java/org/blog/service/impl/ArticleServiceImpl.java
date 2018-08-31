@@ -1,6 +1,5 @@
 package org.blog.service.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +9,7 @@ import org.blog.entity.Category;
 import org.blog.mapper.ArticleMapper;
 import org.blog.mapper.CategoryMapper;
 import org.blog.service.ArticleService;
+import org.blog.util.Markdown2HtmlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -31,8 +31,10 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.listArticle(category);
 	}
 
-	public String showArticle(Article article) {
-		return articleMapper.showArticle(article);
+	public String showArticle(Long article_id,Article article) {
+		article.setContent(articleMapper.showArticle(article_id));
+		String content = Markdown2HtmlUtil.markdown2html(article.getContent());
+		return content;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackForClassName = "Exception")

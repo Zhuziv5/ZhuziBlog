@@ -5,6 +5,7 @@
 <head>
 <title>我的博客</title>
 <%@include file="/WEB-INF/common/head.jsp"%>
+
 </head>
 <body>
 	<!-- 将导航栏提取出来作为公共资源 -->
@@ -17,25 +18,11 @@
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="row-fluid">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
-
-					<!-- 显示所有分类 -->
-					<div class="col-md-3"></div>
-					<div class="col-md-6">
-						<h2 class="text-center">文章目录</h2>
-						<c:forEach items="${listAllCategory}" var="c" varStatus="st">
-							<a href="listArticle?id=${c.id}"
-								class="list-group-item">${c.name}
-								<span class="badge label label-default">${c.number }</span></a>
-						</c:forEach>
-					</div>
-					<div class="col-md-3"></div>
+						<h2>文章内容</h2>
+						<p>${articleContent }</p>
 				</div>
-				<div class="col-md-2"></div>
 			</div>
 		</div>
-	</div>
-<br><br><br><br><br>
+
 </body>
 </html>

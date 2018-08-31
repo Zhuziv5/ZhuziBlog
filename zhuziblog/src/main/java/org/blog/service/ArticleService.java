@@ -12,6 +12,6 @@ public interface ArticleService {
 	void deleteArticle(Article article,Category category);
 	void addArticle(Article article,Category category);
 	void updateArticle(Article article,Category category);
-	String showArticle(Article article);
+	String showArticle(Long article_id,Article article);
 
 }

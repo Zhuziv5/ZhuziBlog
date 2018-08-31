@@ -35,4 +35,17 @@
 
 	<mvc:resources location="/WEB-INF/resource/"
 		mapping="/resource/**"></mvc:resources>
+
+	<mvc:interceptors>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="org.blog.interceptor.VisitInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<mvc:exclude-mapping path="/admin/login" />
+			<bean class="org.blog.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

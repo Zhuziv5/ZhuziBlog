@@ -35,41 +35,34 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
 					<!-- 展示所有文章 -->
-					<h2>全部文章</h2>
+					<h2 class="text-center">全部文章</h2>
 					<ul class="thumbnails">
 						<c:forEach items="${listAllArticle}" var="c" varStatus="st">
-							<li class="col-md-4 list-unstyled">
+							<li class="col-md-4 col-sm-12 list-unstyled">
 								<div class="thumbnail">
 									<div class="caption">
-										<h2>${c.title}</h2>
+										<h4>${c.title}</h4>
 										<p class="line-limit-length">${c.summary}</p>
 										<p>
-											<a class="btn btn-primary" href="#">浏览全文</a>
+											<a class="btn btn-primary" href="showArticle?id=${c.id}">浏览全文</a>
 										</p>
 									</div>
 								</div>
 							</li>
 						</c:forEach>
 					</ul>
-					<!-- 
-					<c:forEach items="${listAllArticle}" var="c" varStatus="st">
-						<div class="col-md-3">
-							<h2>${c.title}</h2>
-							<p>${c.summary}</p>
-							<form action="showArticle">
-								<p>
-									<input type="hidden" name="article_id" value="${c.id }">
-									<button class="btn-lg" type="submit">浏览全文 »</button>
-								</p>
-							</form>
-						</div>
-					</c:forEach>
-					 -->
 				</div>
 				<div class="col-md-2"></div>
+
 			</div>
+
 		</div>
 	</div>
-
+	<ul class="pager">
+		<li><a href="?start=0">首 页</a></li>
+		<li><a href="?start=${page.start-page.count }">上一页</a>
+		<li><a href="?start=${page.start+page.count }">下一页</a>
+		<li><a href="?start=${page.last }">末页</a>
+	</ul>
 </body>
 </html>

@@ -54,4 +54,19 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    
+    <!-- 异常捕获 -->
+    <error-page>
+    	<error-code>404</error-code>
+    	<location>/error.html</location>
+    </error-page>
+    
+    <error-page>
+    	<error-code>500</error-code>
+    	<location>/error.html</location>
+    </error-page>
+    
+    <!-- 未捕获的错误，同样可以指定其他异常类 ，或自定义异常类 -->
+    
 </web-app>

@@ -16,17 +16,17 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
 				<div class="row-fluid">
-					<div class="col-md-3">
+					<div class="col-md-2">
 						<ul class="nav nav-stacked nav-pills">
-							<li><a href="#">数据统计</a></li>
+							<li><a href="statisticManagement">数据统计</a></li>
 							<li><a href="categoryManagement">分类管理</a></li>
 							<li class="active"><a href="articleManagement">博文管理</a></li>
 						</ul>
 					</div>
-					<div class="col-md-9">
+					<div class="col-md-10">
 						<table class="table">
 							<thead>
 								<tr>
@@ -46,6 +46,7 @@
 										<td>阅读量待完成</td>
 										<td>
 											<div class="btn-group">
+											
 												<button type="button"
 													class="btn btn-primary btn-sm btn-success"
 													data-toggle="modal" data-target="#myModal${a.id }">编辑</button>
@@ -68,8 +69,8 @@
 																	<label class=" control-label" for="inputtitle">文章标题</label>
 																	<div>
 																		<input type="text" class="form-control" name="title"
-																			id="inputtitle" value="${a.title }"> <input type="hidden"
-																			name="article_id" value="${a.id }">
+																			id="inputtitle" value="${a.title }"> <input
+																			type="hidden" name="article_id" value="${a.id }">
 																	</div>
 																</div>
 																<div class="form-group">
@@ -112,6 +113,12 @@
 
 							</tbody>
 						</table>
+						<ul class="pagination pagination-centered pagination-lg">
+											<li><a href="?start=0">首 页</a></li>
+											<li><a href="?start=${page.start-page.count }">上一页</a>
+											<li><a href="?start=${page.start+page.count }">下一页</a>
+											<li><a href="?start=${page.last }">末页</a>
+										</ul>
 						<form action="addArticle" role="form" method="post">
 							<div class="form-group ">
 								<label>文章标题</label><input type="text" name="title"
@@ -141,6 +148,8 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-1"></div>
+
 		</div>
 	</div>
 </body>

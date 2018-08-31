@@ -12,23 +12,23 @@
 	<div>
 		<img
 			src="http://image.youzhan.org/d/dd/2de797545de56274f03a5920eb3a1.jpg"
-			class="img-responsive img-thumbnail"/>
+			class="img-responsive img-thumbnail" />
 	</div>
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="row-fluid">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
 
 					<div class="row-fluid">
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<ul class="nav nav-stacked nav-pills">
-								<li><a href="#">数据统计</a></li>
+								<li><a href="statisticManagement">数据统计</a></li>
 								<li class="active"><a href="categoryManagement">分类管理</a></li>
 								<li><a href="articleManagement">博文管理</a></li>
 							</ul>
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-10">
 							<table class="table">
 								<thead>
 									<tr>
@@ -101,13 +101,21 @@
 
 								</tbody>
 							</table>
+							<ul class="pagination pagination-centered pagination-lg">
+								<li><a href="?start=0">首 页</a></li>
+								<li><a href="?start=${page.start-page.count }">上一页</a>
+									<li><a href="?start=${page.start+page.count }">下一页</a>
+											
+								<li><a href="?start=${page.last }">末页</a>
+										
+							</ul>
 							<div class="row-fluid">
-								<div class="col-md-6">
+										<div class="col-md-6">
 									<form action="addCategory" method="post">
 										<fieldset>
 											<legend>新增分类</legend>
 											<label>新增分类名</label><input type="text" name="name" /> <span
-												class="help-block">注意：不要增加重复分类</span>
+														class="help-block">注意：不要增加重复分类</span>
 											<button type="submit" class="btn">确定</button>
 										</fieldset>
 									</form>
@@ -115,10 +123,11 @@
 
 								<div class="col-md-6"></div>
 							</div>
-						</div>
+						
+								</div>
 					</div>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
 			</div>
 		</div>
 	</div>

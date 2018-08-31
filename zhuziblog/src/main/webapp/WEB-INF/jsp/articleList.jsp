@@ -35,16 +35,16 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
 					<!-- 展示所有文章 -->
-					<h2>全部文章</h2>
+					<h2 class="text-center">全部文章</h2>
 					<ul class="thumbnails">
 						<c:forEach items="${listArticle}" var="c" varStatus="st">
-							<li class="col-md-4 list-unstyled">
+							<li class="col-md-4 col-sm-12 list-unstyled">
 								<div class="thumbnail">
 									<div class="caption">
 										<h2>${c.title}</h2>
 										<p class="line-limit-length">${c.summary}</p>
 										<p>
-											<a class="btn btn-primary" href="#">浏览全文</a>
+											<a class="btn btn-primary" href="showArticle?id=${c.id}">浏览全文</a>
 										</p>
 									</div>
 								</div>
@@ -54,8 +54,8 @@
 				</div>
 				<div class="col-md-2"></div>
 			</div>
+			<br><br><br><br>
 		</div>
 	</div>
-
 </body>
 </html>

@@ -39,6 +39,6 @@ public interface ArticleMapper {
 
 	Long getArticleLastInsertId();
 
-	String showArticle(Article article);
+	String showArticle(Long article_id);
 
 }
